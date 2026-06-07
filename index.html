@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sacrifice, Games & Social Order in Pre-Spanish Mesoamerica</title>
+
+  <!-- Fonts: Cormorant Garamond (display) + Satoshi (body) -->
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── TOKENS ─────────────────────────────────────────────── */
+    :root {
+      --text-xs:   clamp(0.75rem,  0.7rem  + 0.25vw, 0.875rem);
+      --text-sm:   clamp(0.875rem, 0.8rem  + 0.35vw, 1rem);
+      --text-base: clamp(1rem,     0.95rem + 0.25vw, 1.125rem);
+      --text-lg:   clamp(1.125rem, 1rem    + 0.75vw, 1.5rem);
+      --text-xl:   clamp(1.5rem,   1.2rem  + 1.25vw, 2.25rem);
+      --text-2xl:  clamp(2rem,     1.2rem  + 2.5vw,  3.5rem);
+      --text-3xl:  clamp(2.5rem,   1rem    + 4vw,    5rem);
+      --text-hero: clamp(3rem,     0.5rem  + 7vw,    7rem);
+
+      --space-1:  0.25rem;
+      --space-2:  0.5rem;
+      --space-3:  0.75rem;
+      --space-4:  1rem;
+      --space-6:  1.5rem;
+      --space-8:  2rem;
+      --space-10: 2.5rem;
+      --space-12: 3rem;
+      --space-16: 4rem;
+      --space-20: 5rem;
+      --space-24: 6rem;
+
+      --radius-sm: 0.375rem;
+      --radius-md: 0.5rem;
+      --radius-lg: 0.75rem;
+      --transition: 180ms cubic-bezier(0.16, 1, 0.3, 1);
+
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body:    'Satoshi', 'Inter', sans-serif;
+
+      --content-default: 1100px;
+      --content-narrow:  720px;
+    }
+
+    /* ── DARK PALETTE (pre-Columbian earth tones) ─────────────── */
+    [data-theme="dark"], :root {
+      --bg:           #100D07;
+      --surface:      #1E1609;
+      --surface-2:    #2A1E0D;
+      --surface-3:    #3A2A12;
+      --border:       #4D3A18;
+      --text:         #F0E6CC;
+      --text-muted:   #B89D72;
+      --text-faint:   #6B5434;
+      --accent:       #C4622D;
+      --accent-hover: #E07A40;
+      --gold:         #D4A024;
+      --gold-light:   #EEC54A;
+    }
+
+    [data-theme="light"] {
+      --bg:           #FBF5E8;
+      --surface:      #F3E9D2;
+      --surface-2:    #E8D9BA;
+      --surface-3:    #D9C89E;
+      --border:       #B89D72;
+      --text:         #1A1208;
+      --text-muted:   #5C4220;
+      --text-faint:   #9A7A50;
+      --accent:       #A84B1E;
+      --accent-hover: #8A3A14;
+      --gold:         #8B6500;
+      --gold-light:   #A07800;
+    }
+
+    /* ── BASE ─────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 5rem;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    body {
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      color: var(--text);
+      background: var(--bg);
+      min-height: 100dvh;
+      line-height: 1.65;
+    }
+    h1,h2,h3,h4 { text-wrap: balance; line-height: 1.1; }
+    p, li { text-wrap: pretty; }
+    img { display: block; max-width: 100%; }
+    a { color: var(--accent); text-decoration: none; transition: color var(--transition); }
+    a:hover { color: var(--accent-hover); }
+
+    /* ── NAV ──────────────────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: color-mix(in oklab, var(--bg) 90%, transparent);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: var(--space-3) var(--space-8);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-4);
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: var(--text-lg);
+      font-weight: 600;
+      color: var(--text);
+      letter-spacing: -0.01em;
+      flex-shrink: 0;
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-links {
+      display: flex;
+      gap: var(--space-6);
+      list-style: none;
+      flex-wrap: wrap;
+    }
+    .nav-links a {
+      font-size: var(--text-sm);
+      font-weight: 500;
+      color: var(--text-muted);
+      transition: color var(--transition);
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-right { display: flex; align-items: center; gap: var(--space-3); }
+    .theme-toggle {
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      color: var(--text-muted);
+      width: 2.2rem;
+      height: 2.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: color var(--transition), border-color var(--transition);
+      flex-shrink: 0;
+    }
+    .theme-toggle:hover { color: var(--text); border-color: var(--text-muted); }
+
+    /* ── HERO ─────────────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      min-height: 92vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: var(--space-20) var(--space-8) var(--space-16);
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 70% 30%, color-mix(in oklab, var(--accent) 12%, transparent), transparent),
+        radial-gradient(ellipse 60% 80% at 20% 80%, color-mix(in oklab, var(--gold) 8%, transparent), transparent),
+        var(--bg);
+    }
+    .hero-pattern {
+      position: absolute;
+      inset: 0;
+      opacity: 0.04;
+      background-image: repeating-linear-gradient(
+        45deg,
+        var(--accent) 0,
+        var(--accent) 1px,
+        transparent 0,
+        transparent 50%
+      );
+      background-size: 24px 24px;
+    }
+    .hero-content {
+      position: relative;
+      max-width: var(--content-default);
+      margin: 0 auto;
+      width: 100%;
+    }
+    .hero-label {
+      font-size: var(--text-sm);
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: var(--space-6);
+    }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: var(--text-hero);
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: var(--space-6);
+      max-width: 14ch;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+    .hero-sub {
+      font-size: var(--text-lg);
+      color: var(--text-muted);
+      max-width: 52ch;
+      margin-bottom: var(--space-10);
+      line-height: 1.5;
+    }
+    .hero-meta {
+      display: flex;
+      gap: var(--space-8);
+      flex-wrap: wrap;
+    }
+    .hero-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-1);
+    }
+    .hero-meta-item .label {
+      font-size: var(--text-xs);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+    }
+    .hero-meta-item .value {
+      font-size: var(--text-sm);
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+    .hero-scroll {
+      position: absolute;
+      right: var(--space-8);
+      bottom: var(--space-8);
+      writing-mode: vertical-rl;
+      font-size: var(--text-xs);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+    }
+    .hero-scroll::after {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 3rem;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+    }
+
+    /* ── TIMELINE BAR ─────────────────────────────────────────── */
+    .timeline-bar {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .timeline-bar-inner {
+      display: flex;
+      align-items: stretch;
+      max-width: var(--content-default);
+      margin: 0 auto;
+      padding: 0 var(--space-8);
+    }
+    .timeline-item {
+      flex: 0 0 auto;
+      padding: var(--space-4) var(--space-6);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-1);
+    }
+    .timeline-item:last-child { border-right: none; }
+    .timeline-item .date {
+      font-size: var(--text-xs);
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+    }
+    .timeline-item .event {
+      font-size: var(--text-xs);
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    /* ── SECTION WRAPPER ──────────────────────────────────────── */
+    section { padding-block: clamp(var(--space-16), 8vw, var(--space-24)); }
+    .container {
+      max-width: var(--content-default);
+      margin: 0 auto;
+      padding-inline: var(--space-8);
+    }
+    .container-narrow {
+      max-width: var(--content-narrow);
+      margin: 0 auto;
+      padding-inline: var(--space-8);
+    }
+
+    /* ── SECTION HEADERS ──────────────────────────────────────── */
+    .section-label {
+      font-size: var(--text-xs);
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: var(--space-3);
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: var(--text-2xl);
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: var(--space-4);
+    }
+    .section-body {
+      font-size: var(--text-base);
+      color: var(--text-muted);
+      max-width: 65ch;
+      line-height: 1.75;
+    }
+    .section-divider {
+      width: 3rem;
+      height: 2px;
+      background: var(--accent);
+      margin-bottom: var(--space-8);
+    }
+
+    /* ── CARDS ────────────────────────────────────────────────── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-6);
+    }
+    .card-title {
+      font-family: var(--font-display);
+      font-size: var(--text-lg);
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: var(--space-3);
+    }
+    .card-body {
+      font-size: var(--text-sm);
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+    .card-accent {
+      border-left: 3px solid var(--accent);
+    }
+    .card-gold {
+      border-left: 3px solid var(--gold);
+    }
+
+    /* ── STAT CALLOUTS ────────────────────────────────────────── */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: var(--space-4);
+      margin-top: var(--space-8);
+    }
+    .stat-card {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-6) var(--space-4);
+      text-align: center;
+    }
+    .stat-value {
+      font-family: var(--font-display);
+      font-size: var(--text-2xl);
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: var(--space-2);
+    }
+    .stat-label {
+      font-size: var(--text-xs);
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* ── GRID LAYOUTS ─────────────────────────────────────────── */
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-6); }
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-6); }
+    .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-4); }
+
+    /* ── TWO-COLUMN WITH STICKY ───────────────────────────────── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-12);
+      align-items: start;
+    }
+    @media (max-width: 700px) { .two-col { grid-template-columns: 1fr; } }
+
+    /* ── PYRAMID ─────────────────────────────────────────────── */
+    .pyramid-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-2);
+      margin-top: var(--space-8);
+    }
+    .pyramid-tier {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-radius: var(--radius-sm);
+      padding: var(--space-3) var(--space-4);
+      gap: var(--space-4);
+      transition: transform var(--transition);
+    }
+    .pyramid-tier:hover { transform: scaleX(1.01); }
+    .tier-main { display: flex; flex-direction: column; }
+    .tier-name {
+      font-weight: 700;
+      font-size: var(--text-sm);
+      color: var(--text);
+    }
+    .tier-desc {
+      font-size: var(--text-xs);
+      color: var(--text-muted);
+    }
+    .tier-pct {
+      font-family: var(--font-display);
+      font-size: var(--text-lg);
+      font-weight: 700;
+      color: var(--gold);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* ── DEBATE CARDS ─────────────────────────────────────────── */
+    .debate-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-6);
+      margin-bottom: var(--space-4);
+    }
+    .debate-q {
+      font-weight: 700;
+      font-size: var(--text-base);
+      color: var(--accent);
+      margin-bottom: var(--space-2);
+    }
+    .debate-a {
+      font-size: var(--text-sm);
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* ── CALLOUT BANNER ──────────────────────────────────────── */
+    .callout {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--gold);
+      border-radius: var(--radius-lg);
+      padding: var(--space-6) var(--space-8);
+      margin-block: var(--space-8);
+    }
+    .callout-label {
+      font-size: var(--text-xs);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: var(--space-2);
+    }
+    .callout p {
+      font-size: var(--text-base);
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-width: 80ch;
+    }
+
+    /* ── SACRIFICE TYPE CARDS ─────────────────────────────────── */
+    .ritual-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-5) var(--space-5) var(--space-5) var(--space-6);
+      border-left: 3px solid var(--accent);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+    .ritual-title {
+      font-family: var(--font-display);
+      font-size: var(--text-lg);
+      font-weight: 600;
+      color: var(--text);
+    }
+    .ritual-body {
+      font-size: var(--text-sm);
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    /* ── SLAVERY GRID ─────────────────────────────────────────── */
+    .slavery-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-6);
+    }
+    .slavery-title {
+      font-size: var(--text-sm);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      margin-bottom: var(--space-4);
+    }
+    .slavery-card ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+    .slavery-card li {
+      font-size: var(--text-sm);
+      color: var(--text-muted);
+      padding-left: var(--space-4);
+      position: relative;
+      line-height: 1.5;
+    }
+    .slavery-card li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 0.8em;
+    }
+
+    /* ── REFERENCES ──────────────────────────────────────────── */
+    .ref-entry {
+      padding: var(--space-4) 0 var(--space-4) var(--space-6);
+      border-left: 2px solid var(--border);
+      margin-bottom: var(--space-4);
+      font-size: var(--text-sm);
+      color: var(--text-muted);
+      line-height: 1.65;
+      transition: border-color var(--transition);
+    }
+    .ref-entry:hover { border-color: var(--accent); }
+    .ref-entry a { color: var(--accent); font-size: var(--text-xs); }
+
+    /* ── SECTION BACKGROUNDS ──────────────────────────────────── */
+    .bg-surface { background: var(--surface); }
+    .bg-surface-2 { background: var(--surface-2); }
+
+    /* ── FOOTER ──────────────────────────────────────────────── */
+    footer {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: var(--space-12) var(--space-8);
+      text-align: center;
+    }
+    footer p {
+      font-size: var(--text-xs);
+      color: var(--text-faint);
+      max-width: none;
+    }
+
+    /* ── SCROLL FADE-IN ──────────────────────────────────────── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .fade-in { opacity: 1; transform: none; transition: none; }
+    }
+
+    /* ── MOBILE ──────────────────────────────────────────────── */
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .hero { min-height: 80vh; }
+      .hero-scroll { display: none; }
+      .container, .container-narrow { padding-inline: var(--space-4); }
+      nav { padding: var(--space-3) var(--space-4); }
+    }
+
+    /* ── BACK TO TOP ─────────────────────────────────────────── */
+    .back-top {
+      position: fixed;
+      bottom: var(--space-6);
+      right: var(--space-6);
+      width: 2.5rem;
+      height: 2.5rem;
+      background: var(--surface-3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-full, 9999px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity var(--transition), transform var(--transition), color var(--transition);
+      z-index: 50;
+    }
+    .back-top.show { opacity: 1; transform: none; }
+    .back-top:hover { color: var(--accent); }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ──────────────────────────────────────────────────── -->
+<nav>
+  <div class="nav-logo">Pre-<span>Spanish</span> Mesoamerica</div>
+  <ul class="nav-links" role="list">
+    <li><a href="#ballgame">The Ballgame</a></li>
+    <li><a href="#sacrifice">Sacrifice</a></li>
+    <li><a href="#class">Social Class</a></li>
+    <li><a href="#slavery">Slavery</a></li>
+    <li><a href="#maya">Maya</a></li>
+    <li><a href="#references">References</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle theme">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+      </svg>
+    </button>
+  </div>
+</nav>
+
+<!-- ── HERO ──────────────────────────────────────────────────── -->
+<section class="hero" id="top">
+  <div class="hero-bg"></div>
+  <div class="hero-pattern"></div>
+  <div class="hero-content">
+    <p class="hero-label">Academic Presentation · Applied Learning Sciences · 2026</p>
+    <h1>Sacrifice, Games &amp; <em>Social Order</em></h1>
+    <p class="hero-sub">Ritual violence, the ballgame, servitude, and class in Aztec and allied pre-Spanish Mesoamerican societies — grounded in peer-reviewed scholarship.</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <span class="label">Author</span>
+        <span class="value">Barry Schoedel</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="label">Program</span>
+        <span class="value">Applied Learning Sciences</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="label">University</span>
+        <span class="value">University of Miami</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">Scroll</div>
+</section>
+
+<!-- ── CULTURAL TIMELINE ──────────────────────────────────────── -->
+<div class="timeline-bar">
+  <div class="timeline-bar-inner">
+    <div class="timeline-item"><span class="date">~1600 BCE</span><span class="event">Earliest rubber balls (Gulf Coast)</span></div>
+    <div class="timeline-item"><span class="date">~1374 BCE</span><span class="event">Oldest highland ballcourt (Etlatongo)</span></div>
+    <div class="timeline-item"><span class="date">800–400 BCE</span><span class="event">Olmec cultural florescence</span></div>
+    <div class="timeline-item"><span class="date">250–900 CE</span><span class="event">Classic Maya period</span></div>
+    <div class="timeline-item"><span class="date">1325 CE</span><span class="event">Founding of Tenochtitlan</span></div>
+    <div class="timeline-item"><span class="date">1428–1521 CE</span><span class="event">Aztec Triple Alliance</span></div>
+    <div class="timeline-item"><span class="date">1519–1521 CE</span><span class="event">Spanish Conquest</span></div>
+  </div>
+</div>
+
+<!-- ── BALLGAME: ORIGINS ──────────────────────────────────────── -->
+<section id="ballgame">
+  <div class="container">
+    <p class="section-label fade-in">The Mesoamerican Ballgame</p>
+    <h2 class="section-title fade-in">Origins, Archaeology, and Cultural Spread</h2>
+    <div class="section-divider fade-in"></div>
+
+    <div class="two-col fade-in">
+      <div>
+        <p class="section-body" style="margin-bottom: var(--space-6)">
+          The Mesoamerican ballgame is one of the oldest team sports in human history, with formal ballcourts dating to at least 1374 BCE in the highlands of Oaxaca. Blomster and Salazar Chávez (2020) excavated the earliest highland ballcourt at Etlatongo, challenging the long-held assumption that the game originated solely in Gulf Coast lowlands.
+        </p>
+        <p class="section-body">
+          Known as <em>Ōllamaliztli</em> to the Aztecs, <em>pitz</em> to the Maya, and <em>pok-a-tok</em> in later Yucatán, the game spread across Mesoamerica through cultural exchange, trade, and conquest. Over 1,000 archaeological ballcourts have been identified. The court — shaped like a capital I — was placed in the ceremonial center of cities, flanked by temples and funerary shrines, indicating deep religious integration (Met Museum, 2017).
+        </p>
+      </div>
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-value">~3,500+</div>
+          <div class="stat-label">Years of continuous game history</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">1,000+</div>
+          <div class="stat-label">Archaeological ballcourts identified</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">1374 BCE</div>
+          <div class="stat-label">Earliest highland ballcourt (Etlatongo, Oaxaca)</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">6</div>
+          <div class="stat-label">Major cultures: Olmec · Maya · Zapotec · Toltec · Mixtec · Aztec</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-3" style="margin-top: var(--space-10)">
+      <div class="card card-accent fade-in">
+        <div class="card-title">Equipment</div>
+        <div class="card-body">
+          <p>Solid rubber ball weighing ~10 lbs (4.5 kg). Players wore heavy padded hip yokes, knee and elbow guards. Stone yokes found in tombs are ceremonial replicas too heavy for play. The ball represented the Sun or celestial bodies.</p>
+        </div>
+      </div>
+      <div class="card card-accent fade-in">
+        <div class="card-title">Rules</div>
+        <div class="card-body">
+          <p>Teams of 1–7 players per side. Ball struck using hips, thighs, knees, elbows — NOT hands or feet. In the Post-Classic period, a point was scored by passing the ball through a vertical stone ring — an instant win. Heavy betting by spectators was common.</p>
+        </div>
+      </div>
+      <div class="card card-accent fade-in">
+        <div class="card-title">Class &amp; Access</div>
+        <div class="card-body">
+          <p>In Aztec times, the game was primarily a nobles' sport (Britannica, 2026). Elite courts were in sacred precincts near temples. War captives were forced to play in rigged ceremonial matches. Pochteca (merchant guild) members sometimes sponsored games.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── BALLGAME & SACRIFICE ────────────────────────────────────── -->
+<section class="bg-surface" id="ballgame-sacrifice">
+  <div class="container">
+    <p class="section-label fade-in">Ballgame &amp; Sacrifice</p>
+    <h2 class="section-title fade-in">Ritual Violence, Iconography, and Scholarly Debate</h2>
+    <div class="section-divider fade-in"></div>
+
+    <div class="two-col">
+      <div class="fade-in">
+        <p class="section-body" style="margin-bottom:var(--space-5)">
+          Archaeological and iconographic evidence strongly links the ballgame to human sacrifice, though the exact causal mechanism remains debated. A carved stone panel at El Tajín depicts an individual being sacrificed in a ballcourt. At Chichén Itzá, a relief shows a kneeling ballplayer decapitated, with serpents and vegetation erupting from the neck — symbolizing the regenerative power of sacrificial blood (Met Museum, 2017).
+        </p>
+        <p class="section-body" style="margin-bottom:var(--space-5)">
+          The <em>Popol Vuh</em>, the K'iche' Maya creation text, narrates how the Hero Twins played ball against the Lords of Xibalba (the Underworld), connecting the game to death, rebirth, and cosmic struggle.
+        </p>
+        <p class="section-body">
+          The ballgame ball was identified with the Sun itself; the court's opposing ends represented the heavens and the underworld. Players personified celestial bodies in a ritual enactment of cosmic order.
+        </p>
+      </div>
+      <div class="fade-in">
+        <div class="debate-card">
+          <div class="debate-q">Who was sacrificed?</div>
+          <div class="debate-a">Historical accounts and iconography suggest losing teams or their captains. Some scholars argue the winners were sacrificed as the greatest honor. The evidence is genuinely inconclusive.</div>
+        </div>
+        <div class="debate-card">
+          <div class="debate-q">Was sacrifice always the outcome?</div>
+          <div class="debate-a">No. National Geographic (2012) notes that abundant courts in small Maya settlements show the game was played daily for sport. Sacrifice was reserved for specific ceremonial matches, especially those tied to warfare.</div>
+        </div>
+        <div class="debate-card">
+          <div class="debate-q">What does archaeology actually confirm?</div>
+          <div class="debate-a">No sacrificial remains have been directly linked to ballcourt outcomes. Skeletal evidence of players and decapitated individuals exists at ballcourts, but iconographic links remain interpretive rather than documentary (Reddit AskAnthropology, 2024).</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SACRIFICIAL CEREMONIES ─────────────────────────────────── -->
+<section id="sacrifice">
+  <div class="container">
+    <p class="section-label fade-in">Sacrificial Ceremonies</p>
+    <h2 class="section-title fade-in">Ritual Forms, Calendar, and Theological Justification</h2>
+    <div class="section-divider fade-in"></div>
+
+    <div class="callout fade-in">
+      <p class="callout-label">Theological Foundation</p>
+      <p>Aztec cosmology held that the gods had sacrificed themselves to create the world and the Sun. In return, humans owed a "debt" of vital energy — found in blood — to sustain the cosmos. Human bodies were understood to contain a "divine spark" deposited by the gods; sacrifice released that spark, periodically regenerating the universe. The Nahuatl word for sacrifice — <em>Vimana</em> — derived from <em>Ventli</em> (offerings) and <em>Mana</em> (spreading), encapsulating this regenerative exchange (Ali &amp; Al-Gharib, 2024).</p>
+    </div>
+
+    <div class="grid-3" style="margin-top:var(--space-8)">
+      <div class="ritual-card fade-in">
+        <div class="ritual-title">Heart Extraction</div>
+        <div class="ritual-body">Most common form. Priests opened the chest with an obsidian blade, removed the still-beating heart, and raised it to the Sun god Huitzilopochtli. The body was then rolled down the pyramid steps.</div>
+      </div>
+      <div class="ritual-card fade-in">
+        <div class="ritual-title">Gladiatorial Combat</div>
+        <div class="ritual-body">A captive was tethered in place and given a mock weapon — a club with feathers rather than obsidian — then forced to fight four fully armed Jaguar and Eagle Warriors.</div>
+      </div>
+      <div class="ritual-card fade-in">
+        <div class="ritual-title">Flaying — Xipe Totec</div>
+        <div class="ritual-body">During the festival of Tlacaxipehualiztli, victims were flayed and priests wore the skin as a ritual garment, symbolizing the earth's renewal as seeds shed their husks in spring.</div>
+      </div>
+      <div class="ritual-card fade-in">
+        <div class="ritual-title">Fire Sacrifice</div>
+        <div class="ritual-body">Captives were burned alive at the festival of Izcalli for Xiuhtecuhtli (god of fire). Just before death from burns, priests removed their hearts to complete the offering.</div>
+      </div>
+      <div class="ritual-card fade-in">
+        <div class="ritual-title">Child Sacrifice — Tlaloc</div>
+        <div class="ritual-body">Children were sacrificed to the rain god Tlaloc. Their tears were believed essential to the ritual. Remains of 42 children showing signs of sacrifice were found at Templo Mayor (Serious Science, 2016).</div>
+      </div>
+      <div class="ritual-card fade-in">
+        <div class="ritual-title">Water &amp; Drowning Sacrifice</div>
+        <div class="ritual-body">Some victims — particularly children — were drowned in lakes or sacred wells as offerings to Tlaloc and Chalchiuhtlicue. Water represented fertility, life, and divine renewal in Aztec cosmology.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SACRIFICE AS SOCIAL CONTROL ────────────────────────────── -->
+<section class="bg-surface-2">
+  <div class="container">
+    <p class="section-label fade-in">Sacrifice as Social Control</p>
+    <h2 class="section-title fade-in">Ritual Violence, Political Power, and Stratification</h2>
+    <div class="section-divider fade-in"></div>
+
+    <div class="two-col">
+      <div class="fade-in">
+        <p class="section-body" style="margin-bottom:var(--space-5)">
+          Watts et al. (2016) applied Bayesian phylogenetic methods to 93 traditional Austronesian societies and found strong support for the "social control hypothesis": ritual human sacrifice <strong>stabilized social stratification once stratification had arisen</strong> and promoted a shift to strictly inherited class systems.
+        </p>
+        <p class="section-body" style="margin-bottom:var(--space-5)">
+          While this study focused on Austronesian cultures, its cross-cultural framework has direct relevance for Mesoamerica. The authors concluded that sacrifice revealed "a darker link between religion and the evolution of modern hierarchical societies."
+        </p>
+        <p class="section-body">
+          In Aztec society, public sacrifice before allied and enemy rulers served overt political functions. Rulers of rival cities were brought to Tenochtitlan to witness the sacrifice of their own captured warriors — a deliberate demonstration of dominance (Serious Science, 2016).
+        </p>
+      </div>
+      <div class="fade-in">
+        <div class="grid-2" style="gap:var(--space-4)">
+          <div class="card card-gold">
+            <div class="card-title" style="font-size:var(--text-base)">War Captives</div>
+            <div class="card-body">Primary victims in state-sponsored ritual. The "Flower Wars" (Xochiyaoyotl) were deliberately prolonged to ensure a supply of sacrificial prisoners.</div>
+          </div>
+          <div class="card card-gold">
+            <div class="card-title" style="font-size:var(--text-base)">Slaves (Tlacotin)</div>
+            <div class="card-body">Wealthy merchants and the state purchased "incorrigible" slaves specifically for sacrifice at major religious festivals. These were ritually bathed and treated as living gods.</div>
+          </div>
+          <div class="card card-gold">
+            <div class="card-title" style="font-size:var(--text-base)">Children</div>
+            <div class="card-body">Sacrificed to Tlaloc for rain. Archaeologically confirmed: 42 children's remains found at Templo Mayor showing signs of sacrifice.</div>
+          </div>
+          <div class="card card-gold">
+            <div class="card-title" style="font-size:var(--text-base)">Elite Warriors (Voluntary)</div>
+            <div class="card-body">Some warriors were chosen by lot and considered it an honor. Their families gained social prestige; a warrior who died in sacrifice was believed to accompany the Sun.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SOCIAL CLASS ────────────────────────────────────────────── -->
+<section id="class">
+  <div class="container">
+    <p class="section-label fade-in">Social Class &amp; Hierarchy</p>
+    <h2 class="section-title fade-in">The Aztec Social Pyramid</h2>
+    <div class="section-divider fade-in"></div>
+
+    <div class="two-col" style="align-items:start">
+      <div class="fade-in">
+        <div class="pyramid-wrap">
+          <!-- Tiers grow progressively wider via inline width -->
+          <div class="pyramid-tier fade-in" style="background:#C4622D;width:22%;min-width:200px">
+            <div class="tier-main">
+              <span class="tier-name" style="color:#1A1208">Huey Tlatoani</span>
+              <span class="tier-desc" style="color:rgba(26,18,8,0.7)">Emperor — Great Speaker</span>
+            </div>
+            <span class="tier-pct" style="color:#1A1208">&lt;1%</span>
+          </div>
+          <div class="pyramid-tier fade-in" style="background:#A84B2F;width:36%;min-width:200px">
+            <div class="tier-main">
+              <span class="tier-name">Pipiltin</span>
+              <span class="tier-desc">Nobility: priests, military leaders, governors</span>
+            </div>
+            <span class="tier-pct">~5%</span>
+          </div>
+          <div class="pyramid-tier fade-in" style="background:#7A3D1A;width:50%;min-width:200px">
+            <div class="tier-main">
+              <span class="tier-name">Pochteca / Toltecca</span>
+              <span class="tier-desc">Merchant guilds &amp; luxury artisans (semi-independent)</span>
+            </div>
+            <span class="tier-pct">~10%</span>
+          </div>
+          <div class="pyramid-tier fade-in" style="background:var(--surface-3);width:64%;min-width:200px">
+            <div class="tier-main">
+              <span class="tier-name">Macehualtin</span>
+              <span class="tier-desc">Free commoners: farmers, soldiers, craftspeople</span>
+            </div>
+            <span class="tier-pct">~52%</span>
+          </div>
+          <div class="pyramid-tier fade-in" style="background:var(--surface-2);width:78%;min-width:200px;border:1px solid var(--border)">
+            <div class="tier-main">
+              <span class="tier-name">Mayeque</span>
+              <span class="tier-desc">Tenant farmers on noble lands</span>
+            </div>
+            <span class="tier-pct">~30%</span>
+          </div>
+          <div class="pyramid-tier fade-in" style="background:var(--surface);width:92%;min-width:200px;border:1px solid var(--border)">
+            <div class="tier-main">
+              <span class="tier-name">Tlacotin</span>
+              <span class="tier-desc">Slaves — non-hereditary, retaining legal rights</span>
+            </div>
+            <span class="tier-pct">~3%</span>
+          </div>
+        </div>
+        <div class="callout" style="margin-top:var(--space-6);margin-bottom:0">
+          <p class="callout-label">Social Mobility</p>
+          <p>Commoners could rise to <em>cuauhpipiltin</em> (Eagle Noble) through battlefield valor. Nobles who committed crimes or fell into debt could descend to tlacotin status. No one was immune (History Crunch, 2018).</p>
+        </div>
+      </div>
+      <div class="fade-in">
+        <h3 style="font-family:var(--font-display);font-size:var(--text-xl);color:var(--text);margin-bottom:var(--space-6)">Class in Practice</h3>
+        <div style="display:flex;flex-direction:column;gap:var(--space-4)">
+          <div class="card">
+            <div class="card-title" style="font-size:var(--text-base)">Pipiltin Privileges</div>
+            <div class="card-body">Nobles controlled land, held government positions, and attended the <em>Calmecac</em> (elite school for law, history, military strategy). They wore cotton cloaks and elaborate jewelry — items legally forbidden to commoners. All nobles claimed divine descent from Quetzalcoatl.</div>
+          </div>
+          <div class="card">
+            <div class="card-title" style="font-size:var(--text-base)">Sumptuary Laws</div>
+            <div class="card-body">Macehualtin were forbidden from wearing cotton or ornate jewelry on pain of death, unless earned through battlefield heroism. These laws encoded class boundaries into daily visible behavior.</div>
+          </div>
+          <div class="card">
+            <div class="card-title" style="font-size:var(--text-base)">Education &amp; Class</div>
+            <div class="card-body">Nobles attended the <em>Calmecac</em>; commoners attended the <em>Telpochcalli</em> (House of Youth), emphasizing military training and civic virtue over administrative education. Priests emerged from both but advanced from noble families.</div>
+          </div>
+          <div class="card">
+            <div class="card-title" style="font-size:var(--text-base)">Women in the Hierarchy</div>
+            <div class="card-body">Aztec militaristic culture placed women as secondary subjects. Noble women had more privilege and education access; commoner women worked in weaving, cooking, and as concubines. Sacred roles as midwives and healers carried spiritual prestige across class lines.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SLAVERY ─────────────────────────────────────────────────── -->
+<section class="bg-surface" id="slavery">
+  <div class="container">
+    <p class="section-label fade-in">Slavery: The Tlacotin</p>
+    <h2 class="section-title fade-in">A Non-Hereditary, Legally Regulated System of Debt Labor</h2>
+    <div class="section-divider fade-in"></div>
+
+    <div class="callout fade-in">
+      <p class="callout-label">Key Distinction</p>
+      <p>Aztec slavery (<em>tlacotin</em>) bore little resemblance to the chattel slavery of the Atlantic trade. It was a legal status tied to labor debt — not race, birth, or permanent degradation. Tlacotin retained personhood, property rights, and family rights (Wikipedia – Slavery in the Aztec Empire, 2006).</p>
+    </div>
+
+    <div class="grid-4 fade-in" style="margin-top:var(--space-8)">
+      <div class="slavery-card">
+        <div class="slavery-title">How One Became Tlacotin</div>
+        <ul role="list">
+          <li>Voluntary self-sale to escape poverty or debt</li>
+          <li>Parents selling children in family crisis</li>
+          <li>Punishment for crimes (theft, gambling, failed tribute)</li>
+          <li>Family collective sale of a member to a noble</li>
+          <li>Children of traitors enslaved up to 4 generations</li>
+        </ul>
+      </div>
+      <div class="slavery-card">
+        <div class="slavery-title">Rights Retained</div>
+        <ul role="list">
+          <li>Could own property, land, and a home</li>
+          <li>Could own other slaves</li>
+          <li>Could marry; children born free</li>
+          <li>Could buy back their own freedom</li>
+          <li>Could petition for freedom if mistreated</li>
+        </ul>
+      </div>
+      <div class="slavery-card">
+        <div class="slavery-title">Conditions of Labor</div>
+        <ul role="list">
+          <li>Labor extracted as quotas or tasks — not 24-hour ownership</li>
+          <li>Worked in households, fields, as porters (tlameme)</li>
+          <li>Women as weavers, cooks, or concubines</li>
+          <li>Could not be resold without prior formal warnings</li>
+          <li>Emperor's presence could instantly free a slave who entered the palace</li>
+        </ul>
+      </div>
+      <div class="slavery-card">
+        <div class="slavery-title">Pathways to Freedom</div>
+        <ul role="list">
+          <li>Purchase their own freedom</li>
+          <li>Replaced by a family member</li>
+          <li>Collective emancipation by the Tlatoani</li>
+          <li>Ritual bath of purification at Chapultepec</li>
+          <li>Prove mistreatment before an elders' council</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bathed slaves -->
+    <div style="margin-top:var(--space-12)">
+      <p class="section-label fade-in">The Ritual Intersection</p>
+      <h3 class="section-title fade-in" style="font-size:var(--text-xl)">Bathed Slaves and Sacred Death</h3>
+      <div class="section-divider fade-in"></div>
+      <div class="two-col">
+        <div class="fade-in">
+          <p class="section-body" style="margin-bottom:var(--space-5)">
+            A distinct category of slaves — called "bathed slaves" — occupied a unique position at the intersection of servitude and sacrificial religion. Unlike ordinary tlacotin who labored to repay debt, these individuals were purchased specifically for sacrifice at major religious festivals.
+          </p>
+          <p class="section-body" style="margin-bottom:var(--space-5)">
+            Wealthy private citizens, the merchant guilds of the pochteca, or the Aztec state itself would purchase these individuals from the markets. Their purchase required significant wealth, making this a form of conspicuous religious consumption tied directly to elite class privilege.
+          </p>
+          <p class="section-body">
+            These slaves were ritually bathed, dressed as gods, and treated with reverence before their sacrifice. Their deaths were viewed not as punishment but as apotheosis — a divine elevation.
+          </p>
+        </div>
+        <div class="fade-in" style="display:flex;flex-direction:column;gap:var(--space-4)">
+          <div class="card card-accent">
+            <div class="card-title" style="font-family:var(--font-display);font-size:var(--text-xl);color:var(--gold)">Highest Honor</div>
+            <div class="card-title" style="font-size:var(--text-sm);margin-bottom:var(--space-2)">Social Role of Sacrifice</div>
+            <div class="card-body">José Luis de Rojas noted that one of the most respected positions a commoner could hold was <em>tealtiani</em> — the person responsible for the ritual cleansing of slaves before sacrifice (Wikipedia, 2006).</div>
+          </div>
+          <div class="card card-accent">
+            <div class="card-title" style="font-family:var(--font-display);font-size:var(--text-xl);color:var(--gold)">Pochteca</div>
+            <div class="card-title" style="font-size:var(--text-sm);margin-bottom:var(--space-2)">Who Could Sponsor Sacrifice</div>
+            <div class="card-body">Merchant guilds used slave sacrifice at festivals as proof of wealth and piety. Sponsoring a sacrificial slave ceremony elevated social standing — a direct link between commerce, class, and religion.</div>
+          </div>
+          <div class="card card-accent">
+            <div class="card-title" style="font-family:var(--font-display);font-size:var(--text-xl);color:var(--gold)">603 Skulls</div>
+            <div class="card-title" style="font-size:var(--text-sm);margin-bottom:var(--space-2)">Archaeological Confirmation</div>
+            <div class="card-body">By 2020, 603 human skulls had been uncovered at Templo Mayor, the main Aztec temple in Tenochtitlan, confirming large-scale sacrifice as a state institution.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── MAYA BLOODLETTING ────────────────────────────────────────── -->
+<section id="maya">
+  <div class="container">
+    <p class="section-label fade-in">Maya: Bloodletting &amp; Ritual</p>
+    <h2 class="section-title fade-in">Royal Blood, Divine Kingship, and Social Legitimacy</h2>
+    <div class="section-divider fade-in"></div>
+
+    <div class="two-col">
+      <div class="fade-in">
+        <p class="section-body" style="margin-bottom:var(--space-5)">
+          Among the Classic Maya (250–900 CE), bloodletting was the preeminent ritual of royal authority. Rather than large-scale public sacrifice, Maya rulers demonstrated their divine fitness to rule through self-inflicted bloodletting — piercing lips, earlobes, genitals, and tongues with obsidian blades, stingray spines, and bone awls.
+        </p>
+        <p class="section-body" style="margin-bottom:var(--space-5)">
+          Munson et al. (2014), analyzing 2,480 Maya hieroglyphic monuments, found that bloodletting rituals were associated specifically with antagonistic political statements — moments of warfare, conflict, and dynastic rivalry. The act was not universal or egalitarian: it was a costly, public signal of royal commitment and metaphysical authority.
+        </p>
+        <p class="section-body">
+          The inscriptions at Copán and Yaxchilán account for 42% of all documented Maya bloodletting records, suggesting these rituals were concentrated in politically competitive regional nodes. The researchers found that bloodletting spread through social network ties rather than geographic proximity.
+        </p>
+      </div>
+      <div class="fade-in" style="display:flex;flex-direction:column;gap:var(--space-3)">
+        <div class="card" style="display:flex;gap:var(--space-4);align-items:center">
+          <div style="font-family:var(--font-display);font-size:var(--text-xl);font-weight:700;color:var(--accent);flex-shrink:0;min-width:5rem">2,480</div>
+          <div class="card-body">Maya hieroglyphic texts analyzed by Munson et al. (2014)</div>
+        </div>
+        <div class="card" style="display:flex;gap:var(--space-4);align-items:center">
+          <div style="font-family:var(--font-display);font-size:var(--text-xl);font-weight:700;color:var(--accent);flex-shrink:0;min-width:5rem">89</div>
+          <div class="card-body">Documented instances of the ch'ahb' bloodletting glyph found in inscriptions</div>
+        </div>
+        <div class="card" style="display:flex;gap:var(--space-4);align-items:center">
+          <div style="font-family:var(--font-display);font-size:var(--text-xl);font-weight:700;color:var(--accent);flex-shrink:0;min-width:5rem">42%</div>
+          <div class="card-body">Of all documented bloodletting records concentrated at just 2 sites: Copán and Yaxchilán</div>
+        </div>
+        <div class="card" style="display:flex;gap:var(--space-4);align-items:center">
+          <div style="font-family:var(--font-display);font-size:var(--text-base);font-weight:700;color:var(--accent);flex-shrink:0;min-width:5rem;line-height:1.2">Primary Context</div>
+          <div class="card-body">Bloodletting most associated with warfare and conflict statements — not accession ceremonies, as previously assumed</div>
+        </div>
+        <div class="card" style="display:flex;gap:var(--space-4);align-items:center">
+          <div style="font-family:var(--font-display);font-size:var(--text-base);font-weight:700;color:var(--accent);flex-shrink:0;min-width:5rem;line-height:1.2">Social Network</div>
+          <div class="card-body">Rituals spread via elite political alliances, not geography — indicating class-specific cultural transmission</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── REFERENCES ─────────────────────────────────────────────── -->
+<section class="bg-surface-2" id="references">
+  <div class="container-narrow">
+    <p class="section-label fade-in">APA 7 References</p>
+    <h2 class="section-title fade-in">Peer-Reviewed &amp; Primary Sources</h2>
+    <div class="section-divider fade-in"></div>
+
+    <div class="fade-in">
+      <div class="ref-entry">
+        Ali, D. M., &amp; Al-Gharib, A. H. (2024). Rituals and sacrifices in the Aztec civilization. <em>Journal of Interdisciplinary Cycle Research and Cultural Reviews, 7</em>(S7), 1476–1482. <a href="https://jicrcr.com/index.php/jicrcr/article/download/1620/1358/3366" target="_blank" rel="noopener">https://jicrcr.com/…</a>
+      </div>
+      <div class="ref-entry">
+        Blomster, J. P., &amp; Salazar Chávez, V. E. (2020). Origins of the Mesoamerican ballgame: Earliest ballcourt from the highlands found at Etlatongo, Oaxaca, Mexico. <em>Science Advances, 6</em>(11), eaay6964. <a href="https://doi.org/10.1126/sciadv.aay6964" target="_blank" rel="noopener">https://doi.org/10.1126/sciadv.aay6964</a>
+      </div>
+      <div class="ref-entry">
+        Carrasco, D. L. (2013). Sacrifice/human sacrifice in religious traditions. In M. K. Jerryson, M. Juergensmeyer, &amp; M. Kitts (Eds.), <em>The Oxford handbook of religion and violence</em> (pp. 209–225). Oxford University Press. <a href="https://doi.org/10.1093/OXFORDHB/9780199759996.013.0011" target="_blank" rel="noopener">https://doi.org/10.1093/…</a>
+      </div>
+      <div class="ref-entry">
+        Marcus, J., &amp; Flannery, K. V. (2004). The coevolution of ritual and society: New ¹⁴C dates from ancient Mexico. <em>Proceedings of the National Academy of Sciences, 101</em>(52), 18257–18261. <a href="https://doi.org/10.1073/pnas.0408551102" target="_blank" rel="noopener">https://doi.org/10.1073/pnas.0408551102</a>
+      </div>
+      <div class="ref-entry">
+        Munson, J., Amati, V., Collard, M., &amp; Macri, M. J. (2014). Classic Maya bloodletting and the cultural evolution of religious rituals: Quantifying patterns of variation in hieroglyphic texts. <em>PLOS ONE, 9</em>(9), e107982. <a href="https://doi.org/10.1371/journal.pone.0107982" target="_blank" rel="noopener">https://doi.org/10.1371/journal.pone.0107982</a>
+      </div>
+      <div class="ref-entry">
+        Watts, J., Sheehan, O., Atkinson, Q. D., Bulbulia, J., &amp; Gray, R. D. (2016). Ritual human sacrifice promoted and sustained the evolution of stratified societies. <em>Nature, 532</em>, 228–231. <a href="https://doi.org/10.1038/nature17159" target="_blank" rel="noopener">https://doi.org/10.1038/nature17159</a>
+      </div>
+      <div class="ref-entry">
+        The Metropolitan Museum of Art. (2017). <em>The Mesoamerican ballgame.</em> <a href="https://www.metmuseum.org/essays/the-mesoamerican-ballgame" target="_blank" rel="noopener">https://www.metmuseum.org/essays/the-mesoamerican-ballgame</a>
+      </div>
+      <div class="ref-entry">
+        Wikipedia contributors. (2006). Slavery in the Aztec Empire. <em>Wikipedia.</em> <a href="https://en.wikipedia.org/wiki/Slavery_in_the_Aztec_Empire" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Slavery_in_the_Aztec_Empire</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ─────────────────────────────────────────────────── -->
+<footer>
+  <p>Barry Schoedel &nbsp;·&nbsp; Applied Learning Sciences &nbsp;·&nbsp; University of Miami &nbsp;·&nbsp; 2026</p>
+  <p style="margin-top:var(--space-2)">All citations formatted per APA 7th Edition.</p>
+</footer>
+
+<!-- Back to top -->
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+    <polyline points="18 15 12 9 6 15"/>
+  </svg>
+</button>
+
+<script>
+  /* Theme toggle */
+  (function () {
+    const t = document.querySelector('[data-theme-toggle]'),
+      r = document.documentElement;
+    let d = matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light';
+    r.setAttribute('data-theme', d);
+    if (t) {
+      t.addEventListener('click', () => {
+        d = d === 'dark' ? 'light' : 'dark';
+        r.setAttribute('data-theme', d);
+        t.innerHTML = d === 'dark'
+          ? '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>'
+          : '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+      });
+    }
+  })();
+
+  /* Scroll fade-in */
+  const observer = new IntersectionObserver(
+    (entries) => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } }),
+    { threshold: 0.08 }
+  );
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  /* Back to top */
+  const bt = document.getElementById('backTop');
+  window.addEventListener('scroll', () => bt.classList.toggle('show', window.scrollY > 400), { passive: true });
+</script>
+</body>
+</html>
